@@ -20,6 +20,8 @@ func Consumer(in <-chan int, wg *sync.WaitGroup) {
 	wg.Done()
 }
 
+//This implementation has a problem, the producer is closing the chanenl, if we extend the one producer to
+// multi producer we will have to close the channel out side of producer and that can't be solved by single wg.
 func main() {
 	wg := &sync.WaitGroup{}
 	wg.Add(2)
